@@ -1,83 +1,92 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class ParkourManager : MonoBehaviour
+public class ParkourScript : MonoBehaviour
 {
-    [Header("UI & Start Menu")]
-    public GameObject startMenu;      // Fereastra cu Butonul
-    public Text statusTextOnScreen;   // Textul care apare ÎN TIMPUL jocului
+    [Header("Setari Parkour")]
+    public Transform startPoint; 
 
-    [Header("Gameplay")]
-    public Transform startPoint;      // Locul de respawn
-    
+    [Header("UI - Elemente de pe ecran")]
+    public GameObject startMenu;      
+    public Text statusText;           
+
     private CharacterController controller;
-    private bool isRespawning = false;
+    private bool isRespawning = false; // Ne asigura ca nu murim de 100 de ori pe secunda
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         
-        // 1. Arătăm Meniul de Start și ascundem textul din joc
-        startMenu.SetActive(true);
-        if(statusTextOnScreen != null) statusTextOnScreen.gameObject.SetActive(false);
-
-        // 2. Punem jocul pe pauză și deblocăm mouse-ul ca să putem apăsa pe buton
-        Time.timeScale = 0f; 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (statusText != null)
+        {
+            statusText.gameObject.SetActive(false); 
+        }
     }
 
-    // Funcția asta va fi apelată CÂND APEȘI BUTONUL DE START
     public void StartGame()
     {
-        // Ascundem meniul și pornim jocul
-        startMenu.SetActive(false);
-        
-        if(statusTextOnScreen != null) 
+        if (startMenu != null)
         {
-            statusTextOnScreen.gameObject.SetActive(true);
-            statusTextOnScreen.text = "Găsește ieșirea! Nu atinge podeaua!";
+            startMenu.SetActive(false);
         }
-
-        // Scoatem jocul de pe pauză și ascundem mouse-ul
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
+        if (statusText != null)
+        {
+            statusText.gameObject.SetActive(true);
+            statusText.text = ""; 
+        }
     }
 
-    // Funcția care verifică dacă ne-am lovit de ceva
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (isRespawning) return; // Dacă deja murim, nu facem nimic
+        // Daca tocmai ne dam respawn, ignora coliziunile ca sa nu intram in bucla
+        if (isRespawning) return; 
 
-        // DACĂ ATINGE PODEAUA (Podea_Mare)
-        if (hit.gameObject.name.Contains("Podea")) 
+        if (hit.gameObject.name.Contains("floor") || hit.gameObject.name.Contains("Podea"))
         {
-            StartCoroutine(RespawnPlayer());
-        }
-
-        // DACĂ AJUNGE LA UȘĂ (Asigură-te că ușa ta are cuvântul "Door" sau "Usa" în nume)
-        if (hit.gameObject.name.Contains("Door") || hit.gameObject.name.Contains("Usa")) 
-        {
-            if(statusTextOnScreen != null) statusTextOnScreen.text = "AI CÂȘTIGAT! Camera următoare se deblochează...";
+            Respawn();
         }
     }
 
-    IEnumerator RespawnPlayer()
+    void Respawn()
     {
-        isRespawning = true;
-        if(statusTextOnScreen != null) statusTextOnScreen.text = "AI CĂZUT! O iei de la capăt...";
-        
-        // Oprim controllerul o fracțiune de secundă pentru a-l putea teleporta
-        controller.enabled = false;
-        transform.position = startPoint.position;
-        controller.enabled = true;
+        isRespawning = true; // Activam "invincibilitatea" temporara
+        Debug.Log("Ai atins podeaua! Te intorci la start...");
 
-        // Așteptăm 2 secunde ca jucătorul să proceseze greșeala
-        yield return new WaitForSeconds(2f);
-        
-        if(statusTextOnScreen != null) statusTextOnScreen.text = "Sari din obiect în obiect! Nu atinge podeaua!";
+        if (statusText != null)
+        {
+            statusText.text = "AI CĂZUT!";
+            // Sterge textul de pe ecran dupa 2 secunde (2f)
+            Invoke("AscundeText", 2f); 
+        }
+
+        if (controller != null)
+        {
+            controller.enabled = false;
+            transform.position = startPoint.position;
+            controller.enabled = true;
+        }
+        else
+        {
+            transform.position = startPoint.position;
+        }
+
+        // Oprim "invincibilitatea" dupa jumatate de secunda ca sa poti juca normal
+        Invoke("ResetRespawn", 0.5f);
+    }
+
+    // Functie care curata textul
+    void AscundeText()
+    {
+        if (statusText != null)
+        {
+            statusText.text = "";
+        }
+    }
+
+    // Functie care te lasa sa mori din nou
+    void ResetRespawn()
+    {
         isRespawning = false;
     }
 }
