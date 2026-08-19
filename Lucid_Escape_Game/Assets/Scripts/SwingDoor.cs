@@ -46,6 +46,14 @@ public class SwingDoor : Interactable
     public string promptClose = "Inchide";
 
     bool open;
+
+    /// E deschisa acum? Util pentru puzzle-uri si pentru IesireCamera.
+    public bool EDeschisa => open;
+
+    /// Se declanseaza in momentul in care usa incepe sa se deschida.
+    /// IesireCamera se leaga aici ca sa scoata jucatorul din camera cand
+    /// deschide trapa - nu poti trece printr-o trapa de la 3 metri.
+    public event System.Action<SwingDoor> Deschisa;
     float unghi, unghiTinta;
 
     Vector3 startPos;
@@ -115,6 +123,8 @@ public class SwingDoor : Interactable
 
         open = !open;
         unghiTinta = open ? openAngle : 0f;
+
+        if (open) Deschisa?.Invoke(this);
     }
 
     void Update()
