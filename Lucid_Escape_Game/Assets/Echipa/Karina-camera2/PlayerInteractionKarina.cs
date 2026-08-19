@@ -1,7 +1,11 @@
 using UnityEngine;
+using System.Collections; // Am adăugat asta ca să putem folosi "temporizatorul"
 
 public class PlayerInteractionKarina : MonoBehaviour
 {
+    [Header("Elemente UI Bilet")]
+    public GameObject biletInceput;
+
     [Header("Setări Interacțiune")]
     public float interactionRange = 3f;
     public Camera playerCamera;
@@ -14,20 +18,40 @@ public class PlayerInteractionKarina : MonoBehaviour
     private bool hasFlashlight = false;
     private GameObject heldFlashlight;
 
-    // Aici stocăm textul care va apărea când te uiți la ceva
     private string hoverText = "";
 
     void Start()
     {
-        GameHUD.Mesaj("Este întuneric... Ia lanterna și caută cheia pentru a deschide ușa!", 5f);
+        // Pornim numărătoarea inversă pentru apariția biletului (ex: 2 secunde)
+        StartCoroutine(ArataBiletCuIntarziere(2f));
+
+        // AM STERS linia cu GameHUD ca sa nu mai apara acel text jos!
+    }
+
+    // Funcția magică ce așteaptă câteva secunde
+    IEnumerator ArataBiletCuIntarziere(float timp)
+    {
+        yield return new WaitForSeconds(timp); // Pune pauză pentru 'timp' secunde
+
+        if (biletInceput != null)
+        {
+            biletInceput.SetActive(true); // Apare biletul
+
+            // Deblocăm mouse-ul ca să poți da click pe butonul X
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void Update()
     {
-        // 1. Resetăm textul în fiecare cadru ca să dispară când ne uităm în altă parte
+        if (biletInceput != null && biletInceput.activeSelf && Input.GetKeyDown(KeyCode.X))
+        {
+            InchideBilet();
+        }
+
         hoverText = "";
 
-        // 2. Lansăm raza NON-STOP ca să vedem ce avem în fața ochilor
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
         {
@@ -37,9 +61,8 @@ public class PlayerInteractionKarina : MonoBehaviour
 
                 if (objectName.Contains("cheie") || objectName.Contains("key"))
                 {
-                    hoverText = "[E] Ia cheia"; // Setăm textul!
+                    hoverText = "[E] Ia cheia";
 
-                    // Doar dacă apasă E în timp ce se uită la cheie, o luăm
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         hasKey = true;
@@ -49,7 +72,7 @@ public class PlayerInteractionKarina : MonoBehaviour
                 }
                 else if (objectName.Contains("lanterna") || objectName.Contains("flashlight"))
                 {
-                    hoverText = "[E] Ia lanterna"; // Setăm textul!
+                    hoverText = "[E] Ia lanterna";
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -69,17 +92,13 @@ public class PlayerInteractionKarina : MonoBehaviour
             {
                 if (hasKey)
                 {
-                    hoverText = "[E] Deschide ușa"; // Setăm textul!
+                    hoverText = "[E] Deschide ușa";
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         GameHUD.Mesaj("Ai descuiat ușa! Felicitări!");
 
-                        // Teleportarea: IesireCamera stie in ce scena mergem
-                        // si la ce punct de spawn, si marcheaza camera
-                        // terminata ca sa se descuie usa urmatoare din hol.
                         var iesire = FindFirstObjectByType<IesireCamera>();
-
                         if (iesire != null) iesire.Pleaca(1.5f);
                         else Debug.LogWarning("Camera 2: nu exista IesireCamera in scena.");
                     }
@@ -96,7 +115,6 @@ public class PlayerInteractionKarina : MonoBehaviour
             }
         }
 
-        // Aprindem/stingem lanterna cu F
         if (hasFlashlight && heldFlashlight != null && Input.GetKeyDown(KeyCode.F))
         {
             Light flashlightLight = heldFlashlight.GetComponentInChildren<Light>();
@@ -107,18 +125,26 @@ public class PlayerInteractionKarina : MonoBehaviour
         }
     }
 
-    // 3. Această funcție desenează pe ecran textul "hoverText"
+    public void InchideBilet()
+    {
+        if (biletInceput != null)
+        {
+            biletInceput.SetActive(false);
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void OnGUI()
     {
-        // Dacă avem un text de afișat (adică nu e gol)
         if (hoverText != "")
         {
             GUIStyle stil = new GUIStyle();
-            stil.fontSize = 24; // Mărimea textului
-            stil.normal.textColor = Color.white; // Culoarea textului
+            stil.fontSize = 24;
+            stil.normal.textColor = Color.white;
             stil.alignment = TextAnchor.MiddleCenter;
 
-            // Îl desenăm chiar pe centrul ecranului, puțin mai jos de crosshair
             GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 30, 300, 50), hoverText, stil);
         }
     }
