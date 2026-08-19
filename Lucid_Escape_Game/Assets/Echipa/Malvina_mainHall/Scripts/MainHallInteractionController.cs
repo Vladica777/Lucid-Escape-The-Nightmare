@@ -52,8 +52,26 @@ public class MainHallInteractionController : MonoBehaviour
             return;
         }
 
+        if (!door.IsUnlocked)
+        {
+            return;
+        }
+
         SetPromptVisible(false, string.Empty);
-        fadeController.PlayDoorPreview(door.SelectedMessage, movement, interactor ?? playerInteraction);
+
+        PlayerInteraction interaction = interactor ?? playerInteraction;
+
+        // usa fara scena completata se comporta ca inainte: doar mesajul,
+        // apoi revine din negru. Asa nu se blocheaza nimeni in fata unei
+        // camere care nu exista inca.
+        if (string.IsNullOrWhiteSpace(door.SceneName))
+        {
+            fadeController.PlayDoorPreview(door.SelectedMessage, movement, interaction);
+            return;
+        }
+
+        fadeController.PlayDoorExit(door.SelectedMessage, movement, interaction,
+            () => Tranzitie.Incarca(door.SceneName, door.SpawnId));
     }
 
     private void CreateUI()

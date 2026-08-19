@@ -921,7 +921,8 @@ Transform:
   m_LocalPosition: {x: -4.05, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 946358559}
   m_Father: {fileID: 100401}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &110450
@@ -952,7 +953,8 @@ Transform:
   m_LocalPosition: {x: 4.05, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1708785198}
   m_Father: {fileID: 100451}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &110500
@@ -983,7 +985,8 @@ Transform:
   m_LocalPosition: {x: -4.05, y: 0, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 504038989}
   m_Father: {fileID: 100501}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &110550
@@ -1014,7 +1017,8 @@ Transform:
   m_LocalPosition: {x: 4.05, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 92199645}
   m_Father: {fileID: 100551}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &110600
@@ -1045,7 +1049,8 @@ Transform:
   m_LocalPosition: {x: -4.05, y: 0, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1754709840}
   m_Father: {fileID: 100601}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &120000
@@ -12408,6 +12413,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 1
   selectedMessage: You chose Door 01
+  sceneName: findkey_room
+  spawnId: intrare
+  requiresRoom: 
+  lockedPrompt: '[E] Intra'
   transitionController: {fileID: 910005}
 --- !u!114 &911002
 MonoBehaviour:
@@ -12423,6 +12432,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 2
   selectedMessage: You chose Door 02
+  sceneName: 
+  spawnId: intrare
+  requiresRoom: camera2
+  lockedPrompt: '[E] Usa asta nu duce nicaieri inca'
   transitionController: {fileID: 910005}
 --- !u!114 &911003
 MonoBehaviour:
@@ -12438,6 +12451,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 3
   selectedMessage: You chose Door 03
+  sceneName: Camera_Ana
+  spawnId: intrare
+  requiresRoom: camera3
+  lockedPrompt: '[E] Incuiata. Termina mai intai nivelul 3'
   transitionController: {fileID: 910005}
 --- !u!114 &911004
 MonoBehaviour:
@@ -12453,6 +12470,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 4
   selectedMessage: You chose Door 04
+  sceneName: cam5TEST
+  spawnId: intrare
+  requiresRoom: camera4
+  lockedPrompt: '[E] Incuiata. Termina mai intai nivelul 4'
   transitionController: {fileID: 910005}
 --- !u!114 &911005
 MonoBehaviour:
@@ -12468,9 +12489,290 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 5
   selectedMessage: You chose Door 05
+  sceneName: vld-room
+  spawnId: intrare
+  requiresRoom: camera5
+  lockedPrompt: '[E] Incuiata. Termina mai intai nivelul 5'
   transitionController: {fileID: 910005}
+--- !u!1 &92199644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92199645}
+  - component: {fileID: 92199646}
+  m_Layer: 0
+  m_Name: SPAWN_dupa_camera5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92199645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92199644}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0.1, z: -2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92199646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92199644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: dupa_camera5
+  seteazaOrientarea: 1
+--- !u!1 &504038988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504038989}
+  - component: {fileID: 504038990}
+  m_Layer: 0
+  m_Name: SPAWN_dupa_camera4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504038989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504038988}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: -0.7071069}
+  m_LocalPosition: {x: 0, y: 0.1, z: -2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504038990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504038988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: dupa_camera4
+  seteazaOrientarea: 1
+--- !u!1 &946358558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946358559}
+  - component: {fileID: 946358560}
+  m_Layer: 0
+  m_Name: SPAWN_dupa_camera2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946358559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946358558}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: -0.7071069}
+  m_LocalPosition: {x: 0, y: 0.1, z: -2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946358560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946358558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: dupa_camera2
+  seteazaOrientarea: 1
+--- !u!1 &1708785197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708785198}
+  - component: {fileID: 1708785199}
+  m_Layer: 0
+  m_Name: SPAWN_dupa_camera3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708785198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708785197}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0.1, z: -2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708785199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708785197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: dupa_camera3
+  seteazaOrientarea: 1
+--- !u!1 &1754709839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754709840}
+  - component: {fileID: 1754709841}
+  m_Layer: 0
+  m_Name: SPAWN_dupa_camera6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754709840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754709839}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: -0.7071069}
+  m_LocalPosition: {x: 0, y: 0.1, z: -2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754709841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754709839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: dupa_camera6
+  seteazaOrientarea: 1
+--- !u!1 &1866373738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866373740}
+  - component: {fileID: 1866373739}
+  m_Layer: 0
+  m_Name: SPAWN_intrare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866373739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866373738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0bda1cc0567c4589f58f0c8434258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
+  id: intrare
+  seteazaOrientarea: 1
+--- !u!4 &1866373740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866373738}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalPosition: {x: 0, y: 0.08, z: 4.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 100001}
+  - {fileID: 1866373740}

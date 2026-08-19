@@ -35,6 +35,43 @@ public class ScreenFadeController : MonoBehaviour
         }
     }
 
+    /// Ca PlayDoorPreview, dar nu mai revine din negru: la capat cheama
+    /// onFadedOut, care incarca scena nivelului. Ecranul ramane negru pana
+    /// se incarca noua scena, deci nu se vede taietura.
+    public void PlayDoorExit(string message, MainHallFirstPersonController movement, PlayerInteraction interaction, System.Action onFadedOut)
+    {
+        if (!IsRunning)
+        {
+            StartCoroutine(DoorExitRoutine(message, movement, interaction, onFadedOut));
+        }
+    }
+
+    private IEnumerator DoorExitRoutine(string message, MainHallFirstPersonController movement, PlayerInteraction interaction, System.Action onFadedOut)
+    {
+        IsRunning = true;
+        movement?.SetMovementEnabled(false);
+        interaction?.SetInteractionsEnabled(false);
+
+        yield return FadeRoutine(0f, 1f, fadeOutDuration);
+
+        if (messageText != null)
+        {
+            messageText.text = message;
+            messageText.enabled = true;
+        }
+
+        yield return new WaitForSeconds(messageHoldDuration);
+
+        if (messageText != null)
+        {
+            messageText.enabled = false;
+        }
+
+        // nu mai dam IsRunning pe false si nu mai revenim din negru:
+        // scena se schimba si obiectul asta dispare oricum
+        onFadedOut?.Invoke();
+    }
+
     private IEnumerator DoorPreviewRoutine(string message, MainHallFirstPersonController movement, PlayerInteraction interaction)
     {
         IsRunning = true;
