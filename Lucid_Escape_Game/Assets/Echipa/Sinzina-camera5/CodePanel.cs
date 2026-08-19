@@ -6,6 +6,7 @@ public class CodePanel : MonoBehaviour
     public string correctCode = "2233";
     public FinalDoor finalDoor;
     public TMP_Text displayText;
+    public KeypadZoom keypadZoom;
 
     private string enteredCode = "";
 
@@ -33,18 +34,25 @@ public class CodePanel : MonoBehaviour
             GameHUD.Mesaj("Correct code!");
             if (displayText != null) displayText.text = "GRANTED";
             finalDoor.Unlock();
+            Invoke(nameof(ExitAfterSuccess), 1f);
         }
         else
         {
             GameHUD.Mesaj("Wrong code.");
             if (displayText != null) displayText.text = "DENIED";
-            Invoke(nameof(ClearDisplay), 1f);
+            Invoke(nameof(ExitAfterFail), 1f);
         }
     }
 
-    void ClearDisplay()
+    void ExitAfterSuccess()
+    {
+        if (keypadZoom != null) keypadZoom.ExitZoom();
+    }
+
+    void ExitAfterFail()
     {
         enteredCode = "";
         UpdateDisplay();
+        if (keypadZoom != null) keypadZoom.ExitZoom();
     }
 }

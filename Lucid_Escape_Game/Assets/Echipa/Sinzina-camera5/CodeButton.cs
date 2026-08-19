@@ -6,8 +6,11 @@ public class CodeButton : Interactable
     public CodePanel codePanel;
 
     public override string GetPrompt() => "";
+    public override bool CanInteract => false;
 
-    public override void Interact(PlayerInteractor player)
+    public override void Interact(PlayerInteractor player) { }
+
+    public void PressFromMouse()
     {
         codePanel.AddDigit(digit);
     }
