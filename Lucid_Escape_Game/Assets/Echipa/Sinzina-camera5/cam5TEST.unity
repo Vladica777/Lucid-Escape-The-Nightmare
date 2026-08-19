@@ -883,7 +883,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574048659}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.7924528, g: 0.58832175, b: 0.13830544, a: 1}
@@ -1507,9 +1507,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1956412845950135874, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 717812222035557125, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1573429724}
+      addedObject: {fileID: 1529003919}
+    - targetCorrespondingSourceObject: {fileID: 717812222035557125, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1529003920}
   m_SourcePrefab: {fileID: 100100000, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
 --- !u!1001 &1159846787
 PrefabInstance:
@@ -1596,7 +1599,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187122252}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.7924528, g: 0.58832175, b: 0.13830544, a: 1}
@@ -1945,6 +1948,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eaeaf649770040418b98b8605bdb96f, type: 3}
+--- !u!1 &1529003915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 717812222035557125, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
+  m_PrefabInstance: {fileID: 1142307231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1529003919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529003915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650772c92fbee1a43bcd15ea689d2414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwingDoor
+  prompt: Interactioneaza
+  target: {fileID: 0}
+  hinge: 0
+  hingeAxis: {x: 0, y: 1, z: 0}
+  openAngle: -95
+  speed: 220
+  startOpen: 0
+  locked: 1
+  requiredItemId: key_room5
+  lockedMessage: E incuiata.
+  promptOpen: Deschide
+  promptClose: Inchide
+--- !u!65 &1529003920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529003915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6223225, y: 1.7774656, z: 0.022210782}
+  m_Center: {x: 0.30771533, y: 0.9219482, z: 0.001443188}
 --- !u!1 &1541532207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8051733617637900962, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
@@ -1965,35 +2018,6 @@ MonoBehaviour:
   prompt: Interactioneaza
   digit: 6
   codePanel: {fileID: 235794871}
---- !u!1 &1573429718 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1956412845950135874, guid: c74620937b3cb924495bb7a16d46106a, type: 3}
-  m_PrefabInstance: {fileID: 1142307231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1573429724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573429718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650772c92fbee1a43bcd15ea689d2414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SwingDoor
-  prompt: Interactioneaza
-  target: {fileID: 0}
-  hinge: 0
-  hingeAxis: {x: 0, y: 1, z: 0}
-  openAngle: 95
-  speed: 220
-  startOpen: 0
-  locked: 1
-  requiredItemId: key_room5
-  lockedMessage: Dulapul a fost incuiat de cineva...
-  promptOpen: Deschide
-  promptClose: Inchide
 --- !u!1001 &1670479587
 PrefabInstance:
   m_ObjectHideFlags: 0
