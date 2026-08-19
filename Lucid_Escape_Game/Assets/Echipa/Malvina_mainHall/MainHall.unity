@@ -12432,10 +12432,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 2
   selectedMessage: You chose Door 02
-  sceneName: 
+  sceneName: Labirint_rares
   spawnId: intrare
   requiresRoom: camera2
-  lockedPrompt: '[E] Usa asta nu duce nicaieri inca'
+  lockedPrompt: '[E] Incuiata. Termina mai intai nivelul 2'
   transitionController: {fileID: 910005}
 --- !u!114 &911003
 MonoBehaviour:
