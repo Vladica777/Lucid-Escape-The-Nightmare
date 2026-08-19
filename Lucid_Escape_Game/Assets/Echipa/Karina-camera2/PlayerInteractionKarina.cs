@@ -6,56 +6,113 @@ public class PlayerInteractionKarina : MonoBehaviour
     public float interactionRange = 3f;
     public Camera playerCamera;
 
+    [Header("Așezare Lanternă în Mână")]
+    public Vector3 pozitieLanterna = new Vector3(0.4f, -0.3f, 0.6f);
+    public Vector3 rotatieLanterna = new Vector3(0f, 0f, 90f);
+
     private bool hasKey = false;
     private bool hasFlashlight = false;
     private GameObject heldFlashlight;
 
+    // Aici stocăm textul care va apărea când te uiți la ceva
+    private string hoverText = "";
+
+    void Start()
+    {
+        GameHUD.Mesaj("Este întuneric... Ia lanterna și caută cheia pentru a deschide ușa!", 5f);
+    }
+
     void Update()
     {
-        // Verificăm dacă tasta E funcționează măcar
-        if (Input.GetKeyDown(KeyCode.E))
+        // 1. Resetăm textul în fiecare cadru ca să dispară când ne uităm în altă parte
+        hoverText = "";
+
+        // 2. Lansăm raza NON-STOP ca să vedem ce avem în fața ochilor
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
         {
-            Debug.Log("✅ TASTA E A FOST APĂSATĂ!"); // Dacă nici asta nu apare, e problemă de Unity
-
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
+            if (hit.collider.CompareTag("Interactive"))
             {
-                Debug.Log("🔍 Raza a lovit: " + hit.collider.name + " | Tag: " + hit.collider.tag);
+                string objectName = hit.collider.gameObject.name.ToLower();
 
-                if (hit.collider.CompareTag("Interactive"))
+                if (objectName.Contains("cheie") || objectName.Contains("key"))
                 {
-                    string objectName = hit.collider.gameObject.name.ToLower();
+                    hoverText = "[E] Ia cheia"; // Setăm textul!
 
-                    if (objectName.Contains("cheie") || objectName.Contains("key"))
+                    // Doar dacă apasă E în timp ce se uită la cheie, o luăm
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         hasKey = true;
                         Destroy(hit.collider.gameObject);
-                        Debug.Log("🔑 Ai luat cheia!");
+                        GameHUD.Mesaj("Ai luat o cheie ruginită!");
                     }
-                    else if (objectName.Contains("lanterna") || objectName.Contains("flashlight"))
+                }
+                else if (objectName.Contains("lanterna") || objectName.Contains("flashlight"))
+                {
+                    hoverText = "[E] Ia lanterna"; // Setăm textul!
+
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         hasFlashlight = true;
                         heldFlashlight = hit.collider.gameObject;
 
                         heldFlashlight.transform.SetParent(playerCamera.transform);
-                        heldFlashlight.transform.localPosition = new Vector3(0.3f, -0.2f, 0.5f);
-                        heldFlashlight.transform.localRotation = Quaternion.identity;
-
+                        heldFlashlight.transform.localPosition = pozitieLanterna;
+                        heldFlashlight.transform.localRotation = Quaternion.Euler(rotatieLanterna);
                         Destroy(heldFlashlight.GetComponent<Collider>());
-                        Debug.Log("🔦 Ai luat lanterna!");
+
+                        GameHUD.Mesaj("Ai luat lanterna! Apasă F pentru lumină.");
                     }
                 }
             }
-            else
+            else if (hit.collider.CompareTag("Door"))
             {
-                Debug.Log("❌ Raza nu a lovit nimic în primii 3 metri!");
+                if (hasKey)
+                {
+                    hoverText = "[E] Deschide ușa"; // Setăm textul!
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        GameHUD.Mesaj("Ai descuiat ușa! Felicitări!");
+                        // Aici va veni codul de teleportare mâine!
+                    }
+                }
+                else
+                {
+                    hoverText = "Ușa este încuiată. Caută cheia.";
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        GameHUD.Mesaj("Este încuiată! Nu o poți deschide fără cheie.");
+                    }
+                }
             }
         }
 
+        // Aprindem/stingem lanterna cu F
         if (hasFlashlight && heldFlashlight != null && Input.GetKeyDown(KeyCode.F))
         {
             Light flashlightLight = heldFlashlight.GetComponentInChildren<Light>();
-            if (flashlightLight != null) flashlightLight.enabled = !flashlightLight.enabled;
+            if (flashlightLight != null)
+            {
+                flashlightLight.enabled = !flashlightLight.enabled;
+            }
+        }
+    }
+
+    // 3. Această funcție desenează pe ecran textul "hoverText"
+    void OnGUI()
+    {
+        // Dacă avem un text de afișat (adică nu e gol)
+        if (hoverText != "")
+        {
+            GUIStyle stil = new GUIStyle();
+            stil.fontSize = 24; // Mărimea textului
+            stil.normal.textColor = Color.white; // Culoarea textului
+            stil.alignment = TextAnchor.MiddleCenter;
+
+            // Îl desenăm chiar pe centrul ecranului, puțin mai jos de crosshair
+            GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 30, 300, 50), hoverText, stil);
         }
     }
 }
