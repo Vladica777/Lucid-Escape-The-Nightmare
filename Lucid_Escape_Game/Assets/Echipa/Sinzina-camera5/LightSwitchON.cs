@@ -10,7 +10,7 @@ public class LightSwitch : Interactable
 
     private bool isOn = false;
 
-    public override string GetPrompt() => "";
+    public override string GetPrompt() => "Aprinde lumina";
 
     public override void Interact(PlayerInteractor player)
     {
