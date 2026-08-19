@@ -15,7 +15,14 @@ public class UsaInteractable : Interactable
         if (esteCorecta)
         {
             GameHUD.Mesaj("Ai gasit usa corecta!", 3f);
-            // Aici vei pune codul ca să se deschidă ușa sau să treacă la următoarea cameră
+
+            // Trecerea la camera urmatoare: IesireCamera stie in ce scena
+            // mergem, la ce punct de spawn, si bifeaza camera ca terminata
+            // ca sa se descuie usa urmatoare din hol.
+            var iesire = FindFirstObjectByType<IesireCamera>();
+
+            if (iesire != null) iesire.Pleaca(1.5f);
+            else Debug.LogWarning("Camera 3: nu exista IesireCamera in scena.");
         }
         else
         {

@@ -24,7 +24,8 @@ public class IesireCamera : MonoBehaviour
     public enum Declansare
     {
         LaTrecere,      // jucatorul intra in trigger
-        LaDeschidere    // se deschide usa/trapa legata mai jos
+        LaDeschidere,   // se deschide usa/trapa legata mai jos
+        Manual          // altcineva cheama Pleaca(), din propriul script
     }
 
     [Header("Cand pleaca jucatorul")]
