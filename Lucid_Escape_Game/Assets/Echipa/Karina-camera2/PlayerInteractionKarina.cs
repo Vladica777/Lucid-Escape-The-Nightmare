@@ -74,7 +74,14 @@ public class PlayerInteractionKarina : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         GameHUD.Mesaj("Ai descuiat ușa! Felicitări!");
-                        // Aici va veni codul de teleportare mâine!
+
+                        // Teleportarea: IesireCamera stie in ce scena mergem
+                        // si la ce punct de spawn, si marcheaza camera
+                        // terminata ca sa se descuie usa urmatoare din hol.
+                        var iesire = FindFirstObjectByType<IesireCamera>();
+
+                        if (iesire != null) iesire.Pleaca(1.5f);
+                        else Debug.LogWarning("Camera 2: nu exista IesireCamera in scena.");
                     }
                 }
                 else

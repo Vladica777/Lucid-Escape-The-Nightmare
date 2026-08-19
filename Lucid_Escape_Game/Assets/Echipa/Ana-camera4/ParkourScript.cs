@@ -10,6 +10,11 @@ public class ParkourScript : MonoBehaviour
     public GameObject startMenu;      
     public Text statusText;           
 
+    [Tooltip("Sare peste meniul de START si incepe direct. PlayerMovement " +
+             "blocheaza cursorul la pornire, deci butonul oricum nu se putea " +
+             "apasa cu mouse-ul.")]
+    public bool pornesteDirect = true;
+
     private CharacterController controller;
     private bool isRespawning = false; // Ne asigura ca nu murim de 100 de ori pe secunda
 
@@ -20,6 +25,11 @@ public class ParkourScript : MonoBehaviour
         if (statusText != null)
         {
             statusText.gameObject.SetActive(false); 
+        }
+
+        if (pornesteDirect)
+        {
+            StartGame();
         }
     }
 

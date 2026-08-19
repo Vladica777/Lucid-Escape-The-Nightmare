@@ -19,6 +19,15 @@ public static class Tranzitie
     /// Din ce scena s-a venit. Util pentru "inapoi de unde ai plecat".
     public static string ScenaAnterioara { get; private set; }
 
+    /// Cineva a mutat deja jucatorul in scena asta.
+    ///
+    /// Fara steagul asta, punctele se calcau in picioare: primul care se
+    /// potrivea muta jucatorul si golea SpawnUrmator, iar urmatorul vedea
+    /// campul gol, il lua drept "n-a cerut nimeni nimic" si muta jucatorul
+    /// inapoi la intrare. In hol, unde sunt sase puncte, asta insemna ca
+    /// ajungeai mereu in dormitor, nu in fata usii.
+    static bool consumat;
+
     /// Incarca o scena si retine unde sa apara jucatorul.
     /// Intoarce false daca scena nu poate fi incarcata, si spune de ce.
     public static bool Incarca(string scena, string idSpawn = SpawnImplicit)
@@ -40,6 +49,7 @@ public static class Tranzitie
 
         SpawnUrmator = string.IsNullOrWhiteSpace(idSpawn) ? SpawnImplicit : idSpawn;
         ScenaAnterioara = SceneManager.GetActiveScene().name;
+        consumat = false;
 
         Debug.Log($"Tranzitie: {ScenaAnterioara} -> {scena}, spawn '{SpawnUrmator}'.");
         SceneManager.LoadScene(scena);
@@ -50,6 +60,8 @@ public static class Tranzitie
     /// Cand nimeni n-a cerut nimic, tinta e punctul de intrare.
     public static bool EsteTinta(string idPunct)
     {
+        if (consumat) return false;
+
         string cautat = string.IsNullOrWhiteSpace(SpawnUrmator) ? SpawnImplicit : SpawnUrmator;
         return !string.IsNullOrWhiteSpace(idPunct) && idPunct == cautat;
     }
@@ -58,6 +70,7 @@ public static class Tranzitie
     /// altcineva daca scena se reincarca.
     public static void MarcheazaFolosit()
     {
+        consumat = true;
         SpawnUrmator = null;
     }
 
@@ -66,5 +79,6 @@ public static class Tranzitie
     {
         SpawnUrmator = null;
         ScenaAnterioara = null;
+        consumat = false;
     }
 }
