@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: 3406176d1f79acc41b99efacc9b77a5d
+guid: 7c4820db8b8af044ab1d4a166bd8f989
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24300
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 0
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
+    searchTexturesGlobally: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -56,6 +57,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -105,10 +109,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 358032
-  packageName: Animated Candles & Lanterns
-  packageVersion: 1.0
-  assetPath: Assets/PolyKebap/Candles/Meshes/Candle_Holder_3.fbx
-  uploadId: 857142
