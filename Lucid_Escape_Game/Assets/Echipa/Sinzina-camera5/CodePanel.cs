@@ -40,7 +40,7 @@ public class CodePanel : MonoBehaviour
         {
             GameHUD.Mesaj("Wrong code.");
             if (displayText != null) displayText.text = "DENIED";
-            Invoke(nameof(ExitAfterFail), 1f);
+            Invoke(nameof(ResetAfterFail), 1f);
         }
     }
 
@@ -49,10 +49,9 @@ public class CodePanel : MonoBehaviour
         if (keypadZoom != null) keypadZoom.ExitZoom();
     }
 
-    void ExitAfterFail()
+    void ResetAfterFail()
     {
         enteredCode = "";
         UpdateDisplay();
-        if (keypadZoom != null) keypadZoom.ExitZoom();
     }
 }

@@ -10,12 +10,14 @@ public class KeypadZoom : Interactable
     private bool zoomedIn = false;
     public bool ZoomedIn => zoomedIn;
 
-    public override string GetPrompt() => zoomedIn ? "" : "Priveste panoul";
+    public override string GetPrompt() => zoomedIn ? "Inchide panoul" : "Priveste panoul";
 
     public override void Interact(PlayerInteractor player)
     {
-        if (zoomedIn) return;
-        EnterZoom();
+        if (zoomedIn)
+            ExitZoom();
+        else
+            EnterZoom();
     }
 
     void EnterZoom()
