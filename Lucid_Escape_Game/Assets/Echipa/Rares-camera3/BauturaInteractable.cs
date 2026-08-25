@@ -1,26 +1,33 @@
 using UnityEngine;
 
-// Moștenim clasa Interactable făcută de colegul tău
 public class BauturaInteractable : Interactable
 {
-    [Tooltip("Mesajul care apare pe ecran DUPA ce a baut.")]
     public string mesajDupaBaut = "Ai baut licoarea.";
+    public static bool aAlesOBautura = false;
 
-    // Schimbăm textul care apare când jucătorul se uită la sticlă
     public override string GetPrompt()
     {
-        return "Bea " + prompt; // Ex: "Bea licoarea rosie"
+        if (aAlesOBautura == true) return "";
+        return "Bea " + prompt;
     }
 
-    // Ce se întâmplă când apasă E
     public override void Interact(PlayerInteractor player)
     {
-        // Afișăm mesajul folosind sistemul HUD al colegului
+        if (aAlesOBautura == true) return;
+        aAlesOBautura = true;
+
         GameHUD.Mesaj(mesajDupaBaut, 3f);
 
-        // Facem sticla să dispară
-        gameObject.SetActive(false);
+        // Pornim amețeala
+        FindFirstObjectByType<EfectAmeteala>().esteAmetit = true;
 
-        // AICI vom adăuga efectul de cameră mai târziu!
+        // Întârziem ascunderea cu 0.1 secunde (Asta rezolvă blocajul!)
+        Invoke("AscundeSticla", 0.1f);
+    }
+
+    // Funcția care se apelează după 0.1 secunde
+    void AscundeSticla()
+    {
+        gameObject.SetActive(false);
     }
 }
