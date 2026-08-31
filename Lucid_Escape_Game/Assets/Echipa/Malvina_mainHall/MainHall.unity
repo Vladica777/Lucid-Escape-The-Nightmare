@@ -12690,6 +12690,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PunctSpawn
   id: dupa_camera5
   seteazaOrientarea: 1
+--- !u!1 &308799315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a363d8aa4078624dad4e2140390d446, type: 3}
+  m_PrefabInstance: {fileID: 2106611149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385997975
 GameObject:
   m_ObjectHideFlags: 0
@@ -13020,6 +13025,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615861757}
   m_CullTransparentMesh: 1
+--- !u!1 &723068242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723068244}
+  - component: {fileID: 723068243}
+  m_Layer: 0
+  m_Name: FINAL-dupa-camera6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &723068243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723068242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f809d49c5298a046b00856e54dfb975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalDupaUltimaCamera
+  personaj: {fileID: 308799315}
+  ecranFinal: {fileID: 1911999557}
+  numePersonaj: Ch30_nonPBR@Zombie Attack
+  numeEcran: Canvas
+  idCamera: camera6
+  intarziere: 1
+  pauzaPanaLaPanou: 2.5
+  seIntoarceSpreJucator: 1
+  miscare: {fileID: 0}
+  interactiune: {fileID: 0}
+  sunet: {fileID: 0}
+--- !u!4 &723068244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723068242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &946358558
 GameObject:
   m_ObjectHideFlags: 0
@@ -13528,3 +13588,4 @@ SceneRoots:
   - {fileID: 1911999561}
   - {fileID: 593815836}
   - {fileID: 2106611149}
+  - {fileID: 723068244}
