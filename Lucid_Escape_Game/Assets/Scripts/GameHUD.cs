@@ -141,10 +141,12 @@ public class GameHUD : MonoBehaviour
         var st = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
-            fontSize = 18,
+            // fontSize = 18,
+            fontSize = 14,
             fontStyle = FontStyle.Bold
         };
-        st.normal.textColor = Color.white;
+        st.normal.textColor = new Color(1f, 0.92f, 0.6f);
+        // st.normal.textColor = Color.white;
 
         var r = new Rect(0, Screen.height * 0.62f, Screen.width, 30);
         GUI.Label(r, $"[E]  {tinta.GetPrompt()}", st);
