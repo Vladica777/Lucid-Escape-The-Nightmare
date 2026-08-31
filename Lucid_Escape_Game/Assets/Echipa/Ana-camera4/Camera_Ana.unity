@@ -7953,8 +7953,8 @@ Transform:
   m_GameObject: {fileID: 919132149345444474}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 65, y: 1, z: -70}
-  m_LocalScale: {x: 2, y: 1.9, z: 2}
+  m_LocalPosition: {x: 65, y: 0, z: -70}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6749314087689437411}
@@ -8017,6 +8017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653550196928}
   - component: {fileID: 5866666021723431610}
+  - component: {fileID: 5866666021723431611}
   m_Layer: 0
   m_Name: Ch30_nonPBR@Old Man Idle
   m_TagString: Untagged
@@ -9201,6 +9202,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5866666021723431611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149345444474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacac593ccdf06f499b1a15a3cebb86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
+  playerTarget: {fileID: 413009093}
+  viteza: 12
+  distantaInFata: 6
+  vitezaBalans: 15
+  unghiBalans: 15
+  unghiAplecare: 40
 --- !u!4 &5901452235146340931
 Transform:
   m_ObjectHideFlags: 0
