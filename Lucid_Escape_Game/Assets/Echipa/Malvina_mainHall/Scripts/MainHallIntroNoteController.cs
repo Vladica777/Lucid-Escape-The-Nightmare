@@ -28,10 +28,26 @@ public class MainHallIntroNoteController : MonoBehaviour
         "nu e\u0219ti treaz.";
 
     private GameObject noteRoot;
-    private bool wasShown;
+
+    // Steagul e static, nu de instanta: holul se reincarca de fiecare data
+    // cand te intorci dintr-o camera, deci un camp de instanta ar porni fals
+    // la fiecare intrare si nota ar aparea din nou. Asa apare o singura data
+    // pe rulare, la primul spawn.
+    private static bool wasShown;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetOnPlay()
+    {
+        wasShown = false;
+    }
 
     private IEnumerator Start()
     {
+        if (wasShown)
+        {
+            yield break;
+        }
+
         if (movement == null)
         {
             movement = FindFirstObjectByType<MainHallFirstPersonController>();
