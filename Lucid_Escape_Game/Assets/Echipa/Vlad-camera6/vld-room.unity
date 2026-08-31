@@ -5980,8 +5980,8 @@ MonoBehaviour:
   parteDinEcran: 0.85
   fontBilet: {fileID: 11400000, guid: c950dbf54c2702544864f767e7fffd74, type: 2}
   margineText: {x: 0.1, y: 0.12}
-  marimeLitera: 40
-  culoareText: {r: 0.12, g: 0.1, b: 0.09, a: 1}
+  marimeLitera: 50
+  culoareText: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1181865141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7971,7 +7971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReadableNote
   prompt: Interactioneaza
-  title: Bilet mototolit
+  title: 
   text: 'Trei guri deschise in acelasi perete.
 
     Toate trei mint la fel de frumos.
@@ -9888,7 +9888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce96673fe2224d439456628736f18aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BiletDeInceput
-  titlu: Bilet
+  titlu: 
   text: 'Trei usi. Doar una duce afara.
 
 

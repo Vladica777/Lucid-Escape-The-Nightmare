@@ -99,9 +99,16 @@ public class SwingDoor : Interactable
         return b.center + dir * jumatate;
     }
 
+    // modificare pentru afisare mesaj mai logic
+    // public override string GetPrompt()
+    // {
+    //     if (locked) return lockedMessage;
+    //     return open ? promptClose : promptOpen;
+    // }
+
     public override string GetPrompt()
     {
-        if (locked) return lockedMessage;
+        if (locked) return promptOpen;
         return open ? promptClose : promptOpen;
     }
 
