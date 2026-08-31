@@ -12415,6 +12415,7 @@ GameObject:
   - component: {fileID: 910002}
   - component: {fileID: 910003}
   - component: {fileID: 910004}
+  - component: {fileID: 910008}
   m_Layer: 0
   m_Name: MainHall_Player
   m_TagString: Player
@@ -12549,6 +12550,20 @@ MonoBehaviour:
   notePaper: {fileID: 21300000, guid: 546b77171edb471b974e6810ecce9ad6, type: 3}
   storyFont: {fileID: 11400000, guid: c950dbf54c2702544864f767e7fffd74, type: 2}
   openingDelay: 3
+--- !u!114 &910008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5a24bb29db65648aa78551b85f2054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoarCrosshair
+  crosshairSize: 6
+  crosshairColor: {r: 1, g: 1, b: 1, a: 0.75}
 --- !u!114 &911001
 MonoBehaviour:
   m_ObjectHideFlags: 0
