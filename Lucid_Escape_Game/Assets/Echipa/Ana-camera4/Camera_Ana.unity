@@ -1205,8 +1205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5a24bb29db65648aa78551b85f2054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoarCrosshair
-  crosshairSize: 6
-  crosshairColor: {r: 1, g: 1, b: 1, a: 0.75}
 --- !u!1 &413264190
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,6 +8102,7 @@ GameObject:
   - component: {fileID: 543450653550196928}
   - component: {fileID: 5866666021723431610}
   - component: {fileID: 5866666021723431611}
+  - component: {fileID: 5866666021723431612}
   m_Layer: 0
   m_Name: Ch30_nonPBR@Old Man Idle
   m_TagString: Untagged
@@ -9301,11 +9300,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
   playerTarget: {fileID: 413009093}
-  viteza: 12
-  distantaInFata: 6
-  vitezaBalans: 15
-  unghiBalans: 15
-  unghiAplecare: 40
+  viteza: 3
+  razaPlimbare: 15
+  timpAsteptare: 3
+  distantaMinimaVizibila: 7
+  anim: {fileID: 0}
+  numeParametru: Merge
+  esteParametruBool: 1
+--- !u!143 &5866666021723431612
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149345444474}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 2.35, y: 1.17, z: 0}
 --- !u!4 &5901452235146340931
 Transform:
   m_ObjectHideFlags: 0
