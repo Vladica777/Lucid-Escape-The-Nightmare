@@ -82,13 +82,13 @@ public class MainHallIntroNoteController : MonoBehaviour
         noteRect.anchorMax = new Vector2(0.5f, 0.5f);
         noteRect.pivot = new Vector2(0.5f, 0.5f);
         noteRect.anchoredPosition = Vector2.zero;
-        noteRect.sizeDelta = new Vector2(1180f, 820f);
+        noteRect.sizeDelta = new Vector2(885f, 615f);
 
         if (notePaper != null && notePaper.rect.height > 0f)
         {
             float paperAspect = notePaper.rect.width / notePaper.rect.height;
-            float maxWidth = 1180f;
-            float maxHeight = 820f;
+            float maxWidth = 885f;
+            float maxHeight = 615f;
             float width = Mathf.Min(maxWidth, maxHeight * paperAspect);
             float height = width / paperAspect;
             noteRect.sizeDelta = new Vector2(width, height);
@@ -114,11 +114,11 @@ public class MainHallIntroNoteController : MonoBehaviour
         background.raycastTarget = true;
 
         RectMask2D mask = backgroundObject.AddComponent<RectMask2D>();
-        mask.padding = new Vector4(-54f, -72f, -54f, -72f);
+        mask.padding = new Vector4(-41f, -54f, -41f, -54f);
 
         TextMeshProUGUI title = CreateStoryText(backgroundObject.transform, "StoryTitle");
         title.text = StoryTitle;
-        title.fontSize = 58f;
+        title.fontSize = 44f;
         title.fontStyle = FontStyles.Bold;
         title.lineSpacing = -12f;
 
@@ -130,7 +130,7 @@ public class MainHallIntroNoteController : MonoBehaviour
 
         TextMeshProUGUI body = CreateStoryText(backgroundObject.transform, "StoryText");
         body.text = StoryBody;
-        body.fontSize = 31f;
+        body.fontSize = 24f;
         body.fontStyle = FontStyles.Bold;
         body.lineSpacing = -13f;
         body.paragraphSpacing = -8f;
@@ -148,8 +148,8 @@ public class MainHallIntroNoteController : MonoBehaviour
         closeRect.anchorMin = new Vector2(1f, 1f);
         closeRect.anchorMax = new Vector2(1f, 1f);
         closeRect.pivot = new Vector2(0.5f, 0.5f);
-        closeRect.anchoredPosition = new Vector2(-86f, -96f);
-        closeRect.sizeDelta = new Vector2(58f, 58f);
+        closeRect.anchoredPosition = new Vector2(-65f, -72f);
+        closeRect.sizeDelta = new Vector2(44f, 44f);
 
         Image closeImage = closeObject.AddComponent<Image>();
         closeImage.color = new Color(0.13f, 0.08f, 0.05f, 0.9f);
@@ -170,7 +170,7 @@ public class MainHallIntroNoteController : MonoBehaviour
         TextMeshProUGUI closeLabel = closeLabelObject.AddComponent<TextMeshProUGUI>();
         closeLabel.text = "X";
         closeLabel.font = storyFont;
-        closeLabel.fontSize = 42f;
+        closeLabel.fontSize = 32f;
         closeLabel.color = new Color(0.96f, 0.9f, 0.78f, 1f);
         closeLabel.alignment = TextAlignmentOptions.Center;
         closeLabel.raycastTarget = false;
@@ -187,7 +187,7 @@ public class MainHallIntroNoteController : MonoBehaviour
 
         TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
         text.font = storyFont;
-        text.color = new Color(0.055f, 0.032f, 0.018f, 1f);
+        text.color = Color.white;
         text.alignment = TextAlignmentOptions.Center;
         text.textWrappingMode = TextWrappingModes.Normal;
         text.enableAutoSizing = false;
@@ -214,12 +214,12 @@ public class MainHallIntroNoteController : MonoBehaviour
 
         if (material.HasProperty(ShaderUtilities.ID_OutlineWidth))
         {
-            material.SetFloat(ShaderUtilities.ID_OutlineWidth, 0.035f);
+            material.SetFloat(ShaderUtilities.ID_OutlineWidth, 0.02f);
         }
 
         if (material.HasProperty(ShaderUtilities.ID_OutlineColor))
         {
-            material.SetColor(ShaderUtilities.ID_OutlineColor, new Color(0.055f, 0.032f, 0.018f, 0.55f));
+            material.SetColor(ShaderUtilities.ID_OutlineColor, new Color(0f, 0f, 0f, 0.35f));
         }
 
         text.fontSharedMaterial = material;
