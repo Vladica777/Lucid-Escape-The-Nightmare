@@ -1205,8 +1205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5a24bb29db65648aa78551b85f2054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoarCrosshair
-  crosshairSize: 6
-  crosshairColor: {r: 1, g: 1, b: 1, a: 0.75}
 --- !u!1 &413264190
 GameObject:
   m_ObjectHideFlags: 0
@@ -9301,11 +9299,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
   playerTarget: {fileID: 413009093}
-  viteza: 12
-  distantaInFata: 6
-  vitezaBalans: 15
-  unghiBalans: 15
-  unghiAplecare: 40
+  viteza: 3
+  razaPlimbare: 15
+  timpAsteptare: 3
+  distantaMinimaVizibila: 7
+  anim: {fileID: 0}
+  numeParametru: Merge
+  esteParametruBool: 1
 --- !u!4 &5901452235146340931
 Transform:
   m_ObjectHideFlags: 0

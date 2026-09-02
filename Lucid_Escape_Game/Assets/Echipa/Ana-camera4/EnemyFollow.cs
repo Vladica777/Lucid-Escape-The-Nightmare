@@ -1,58 +1,104 @@
 using UnityEngine;
 
-public class EnemyFollow : MonoBehaviour
+public class EnemyWander : MonoBehaviour
 {
-    [Header("Setari Monstru")]
+    [Header("Setari Plimbare (In Picioare)")]
     public Transform playerTarget;
-    public float viteza = 12f; 
-    public float distantaInFata = 6f; 
+    public float viteza = 3f; 
+    public float razaPlimbare = 15f; 
+    public float timpAsteptare = 3f;
+    public float distantaMinimaVizibila = 7f;
 
-    [Header("Efectul de Tarat")]
-    public float vitezaBalans = 15f;
-    public float unghiBalans = 15f;
-    public float unghiAplecare = 40f; 
+    [Header("Setari Animatie")]
+    public Animator anim;
+    
+    [Tooltip("Cum se numeste parametrul din Animator-ul Karinei?")]
+    public string numeParametru = "Merge";
+    public bool esteParametruBool = true;
 
-    // Aici tinem minte unde era in secunda trecuta
-    private Vector3 pozitieAnterioara;
+    private Vector3 destinatieCurenta;
+    private float timerAsteptare;
+    private bool seMisca = false;
 
     void Start()
     {
-        pozitieAnterioara = transform.position;
+        if (anim == null) anim = GetComponent<Animator>();
+        AlegeDestinatieNoua();
     }
 
     void Update()
     {
-        if (playerTarget != null)
+        // FORTAM inamicul sa stea perfect drept in picioare
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+        // SCUTUL ANTI-FANTOMA: Daca se apropie prea mult de tine, se opreste brusc
+        if (seMisca && playerTarget != null && Vector3.Distance(transform.position, playerTarget.position) < 2f)
         {
-            // 1. Directia ta
-            Vector3 directiePrivire = playerTarget.forward;
-            directiePrivire.y = 0; 
-            directiePrivire.Normalize();
+            seMisca = false;
+            timerAsteptare = timpAsteptare;
+        }
 
-            // 2. Destinatia lui
-            Vector3 punctInFata = playerTarget.position + (directiePrivire * distantaInFata);
-            Vector3 pozitieTinta = new Vector3(punctInFata.x, transform.position.y, punctInFata.z);
+        if (seMisca)
+        {
+            // MISCAREA LINA MATEMATICA (fara fizica)
+            Vector3 punctTinta = new Vector3(destinatieCurenta.x, transform.position.y, destinatieCurenta.z);
+            transform.position = Vector3.MoveTowards(transform.position, punctTinta, viteza * Time.deltaTime);
+            
+            transform.LookAt(punctTinta);
 
-            // 3. Fuge spre destinatie
-            transform.position = Vector3.MoveTowards(transform.position, pozitieTinta, viteza * Time.deltaTime);
-
-            // 4. Se uita fix in ochii tai
-            Vector3 pozitiePlayer = new Vector3(playerTarget.position.x, transform.position.y, playerTarget.position.z);
-            transform.LookAt(pozitiePlayer);
-
-            // 5. TRUCUL PENTRU MERSUL CU SPATELE: 
-            // Verificam daca s-a miscat fizic macar un pic fata de cadru anterior
-            float balans = 0f;
-            if (Vector3.Distance(transform.position, pozitieAnterioara) > 0.001f)
+            if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(destinatieCurenta.x, 0, destinatieCurenta.z)) < 0.5f)
             {
-                balans = Mathf.Sin(Time.time * vitezaBalans) * unghiBalans;
+                seMisca = false; 
+                timerAsteptare = timpAsteptare; 
+            }
+        }
+        else
+        {
+            // Faza de asteptare: Se uita la tine
+            if (playerTarget != null)
+            {
+                Vector3 pozitiePlayer = new Vector3(playerTarget.position.x, transform.position.y, playerTarget.position.z);
+                transform.LookAt(pozitiePlayer);
             }
 
-            // Memoram noua pozitie pentru data viitoare
-            pozitieAnterioara = transform.position;
-
-            // 6. Aplicam aplecarea pe burta si leganatul agitat
-            transform.eulerAngles = new Vector3(unghiAplecare, transform.eulerAngles.y, balans); 
+            timerAsteptare -= Time.deltaTime;
+            
+            if (timerAsteptare <= 0)
+            {
+                AlegeDestinatieNoua();
+            }
         }
+
+        // --- SISTEMUL DE ANIMATIE ---
+        if (anim != null)
+        {
+            if (esteParametruBool)
+            {
+                anim.SetBool(numeParametru, seMisca);
+            }
+            else
+            {
+                anim.SetFloat(numeParametru, seMisca ? viteza : 0f);
+            }
+        }
+    }
+
+    void AlegeDestinatieNoua()
+    {
+        Vector3 centru = playerTarget != null ? playerTarget.position : transform.position;
+        Vector2 punctRandom = Vector2.zero;
+        float distantaFataDeTine = 0f;
+        int salvari = 0;
+        
+        do
+        {
+            punctRandom = Random.insideUnitCircle * razaPlimbare;
+            distantaFataDeTine = Vector2.Distance(Vector2.zero, punctRandom);
+            salvari++;
+        } 
+        while (distantaFataDeTine < distantaMinimaVizibila && salvari < 20);
+
+        destinatieCurenta = new Vector3(centru.x + punctRandom.x, transform.position.y, centru.z + punctRandom.y);
+        seMisca = true;
     }
 }
