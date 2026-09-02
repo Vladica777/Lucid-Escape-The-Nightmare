@@ -1704,6 +1704,37 @@ MonoBehaviour:
   raza: 4
   intarziere: 1
   mesaj: '[E] Iesi din camera'
+--- !u!1 &642363834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642363835}
+  m_Layer: 0
+  m_Name: CentruPatrulare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642363835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642363834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 77.09, y: 12.57, z: -84.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771362643
 GameObject:
   m_ObjectHideFlags: 0
@@ -8102,6 +8133,9 @@ GameObject:
   - component: {fileID: 543450653550196928}
   - component: {fileID: 5866666021723431610}
   - component: {fileID: 5866666021723431611}
+  - component: {fileID: 5866666021723431613}
+  - component: {fileID: 5866666021723431612}
+  - component: {fileID: 5866666021723431614}
   m_Layer: 0
   m_Name: Ch30_nonPBR@Old Man Idle
   m_TagString: Untagged
@@ -9298,14 +9332,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacac593ccdf06f499b1a15a3cebb86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
+  centrulZonei: {fileID: 642363835}
+  razaZonei: 10
   playerTarget: {fileID: 413009093}
-  viteza: 3
-  razaPlimbare: 15
-  timpAsteptare: 3
-  distantaMinimaVizibila: 7
+  viteza: 3.5
+  timpAsteptare: 5
+  sansaSpreJucator: 40
   anim: {fileID: 0}
   numeParametru: Merge
   esteParametruBool: 1
+--- !u!136 &5866666021723431612
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149345444474}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.35
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.17, z: 0}
+--- !u!54 &5866666021723431613
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149345444474}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!143 &5866666021723431614
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149345444474}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2.35
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.17, z: 0}
 --- !u!4 &5901452235146340931
 Transform:
   m_ObjectHideFlags: 0
@@ -9672,7 +9782,7 @@ Transform:
   m_GameObject: {fileID: 6054949699876185635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.54, z: 0}
+  m_LocalPosition: {x: 2.54, y: 1.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10264,3 +10374,4 @@ SceneRoots:
   - {fileID: 105286086}
   - {fileID: 130055409}
   - {fileID: 543450653550196928}
+  - {fileID: 642363835}
