@@ -3,7 +3,7 @@ using TMPro;
 
 public class CodePanel : MonoBehaviour
 {
-    public string correctCode = "2233";
+    public string correctCode = "1233";
     public FinalDoor finalDoor;
     public TMP_Text displayText;
     public KeypadZoom keypadZoom;
@@ -31,14 +31,14 @@ public class CodePanel : MonoBehaviour
     {
         if (enteredCode == correctCode)
         {
-            GameHUD.Mesaj("Correct code!");
+            GameHUD.Mesaj("Cod corect!");
             if (displayText != null) displayText.text = "GRANTED";
             finalDoor.Unlock();
             Invoke(nameof(ExitAfterSuccess), 1f);
         }
         else
         {
-            GameHUD.Mesaj("Wrong code.");
+            GameHUD.Mesaj("Cod gresit.");
             if (displayText != null) displayText.text = "DENIED";
             Invoke(nameof(ResetAfterFail), 1f);
         }
